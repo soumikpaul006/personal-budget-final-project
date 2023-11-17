@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit{
       password:'',
     });
   }
+
+
   ValidateEmail = (email: any) => {
     var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -51,12 +53,12 @@ export class LoginComponent implements OnInit{
     }
     else
     {
-      this.http.post('http:localhost:3000/api/login',user,{withCredentials:true})
+      this.http.post('http://localhost:3000/api/login',user,{withCredentials:true})
       .subscribe(
-        (res)=> this.router.navigate(['/'])),
-        (err: { error: { message: any; }; })=>{
+        (res)=> this.router.navigate(['/']),
+        (err)=> {
           Swal.fire("Error",err.error.message,"error")
         }
-    }
+      )}
   }
 }
