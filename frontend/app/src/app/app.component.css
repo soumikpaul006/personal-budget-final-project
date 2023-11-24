@@ -11,7 +11,6 @@
 .form-signin .form-control{
   position: relative;
   box-sizing: border-box;
-  height: auto;
 }
 
 .form-signin .form-control:focus {
