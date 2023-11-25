@@ -1,0 +1,16 @@
+<!-- add-budget-dialog.component.html -->
+<h2 mat-dialog-title>Add New Budget</h2>
+<mat-dialog-content>
+  <!-- Your form fields go here -->
+  <!-- For simplicity, let's assume two input fields: title and amount -->
+  <mat-form-field>
+    <input matInput placeholder="Title" [(ngModel)]="newBudget.title" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Amount" [(ngModel)]="newBudget.amount" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button [mat-dialog-close]="newBudget" cdkFocusInitial>Add Budget</button>
+</mat-dialog-actions>

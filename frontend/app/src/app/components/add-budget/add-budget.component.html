@@ -1,1 +1,38 @@
-<h1>add-budget-works!</h1>
+<!-- add-budget.component.html -->
+<div class="container">
+  <h2>Budget List</h2>
+
+  <!-- Add Budget Button -->
+  <button mat-raised-button color="primary" (click)="openAddBudgetDialog()">Add Budget</button>
+
+  <!-- Budget Table -->
+  <table mat-table [dataSource]="budgets" class="mat-elevation-z8">
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let budget">{{ budget.title }}</td>
+    </ng-container>
+
+    <!-- Amount Column -->
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef>Amount</th>
+      <td mat-cell *matCellDef="let budget">{{ budget.amount }}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let budget">
+        <button mat-icon-button class="action-button" (click)="openEditBudgetDialog(budget)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button class="action-button" (click)="deleteBudget(budget._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['title', 'amount', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['title', 'amount', 'actions'];"></tr>
+  </table>
+</div>

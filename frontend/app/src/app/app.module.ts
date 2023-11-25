@@ -18,6 +18,13 @@ import { AddExpenseComponent } from './components/add-expense/add-expense.compon
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { AddBudgetDialogComponent } from './components/add-budget-dialog/add-budget-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { EditBudgetDialogComponent } from './components/edit-budget-dialog/edit-budget-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +37,8 @@ import { MatIconModule } from '@angular/material/icon';
     AddExpenseComponent,
     DashboardComponent,
     SidebarComponent,
+    AddBudgetDialogComponent,
+    EditBudgetDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +48,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatListModule,
     MatIconModule,
+    MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatButtonModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule
