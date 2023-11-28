@@ -18,6 +18,10 @@ const expenseSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'BudgetTable', // Reference to the BudgetTable model
     required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 

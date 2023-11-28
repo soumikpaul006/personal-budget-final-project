@@ -23,7 +23,13 @@ import { MatTableModule } from '@angular/material/table';
 import { AddBudgetDialogComponent } from './components/add-budget-dialog/add-budget-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core'; // Ensure MatOptionModule is imported
+
 import { EditBudgetDialogComponent } from './components/edit-budget-dialog/edit-budget-dialog.component';
+import { ExpenseDialogComponent } from './components/expense-dialog/expense-dialog.component';
+import { EditExpenseDialogComponent } from './components/edit-expense-dialog/edit-expense-dialog.component';
 
 
 @NgModule({
@@ -39,6 +45,8 @@ import { EditBudgetDialogComponent } from './components/edit-budget-dialog/edit-
     SidebarComponent,
     AddBudgetDialogComponent,
     EditBudgetDialogComponent,
+    ExpenseDialogComponent,
+    EditExpenseDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +60,9 @@ import { EditBudgetDialogComponent } from './components/edit-budget-dialog/edit-
     MatDialogModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatInputModule,
+    MatSelectModule,
+    MatOptionModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule

@@ -54,6 +54,7 @@ export class AddBudgetComponent implements OnInit {
       this.budgets = budgets;
     });
   }
+
   openEditBudgetDialog(budget: any): void {
     const dialogRef = this.dialog.open(EditBudgetDialogComponent, {
       width: '300px',

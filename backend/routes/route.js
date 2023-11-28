@@ -162,7 +162,8 @@ router.post('/expenses', jwtCheck, async (req, res) => {
   // Get all expenses
   router.get('/expenses', jwtCheck, async (req, res) => {
     try {
-      const expenses = await ExpenseTable.find({ userCreated: req.user._id });
+      const expenses = await ExpenseTable.find({ userCreated: req.user._id })
+      .populate('budget');
       res.json(expenses);
     } catch (error) {
       console.error(error);

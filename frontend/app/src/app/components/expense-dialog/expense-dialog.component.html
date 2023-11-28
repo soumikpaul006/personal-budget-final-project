@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Add New Expense</h1>
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Amount" [(ngModel)]="newExpense.amount" />
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Comment" [(ngModel)]="newExpense.comment" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Budget</mat-label>
+    <mat-select [(ngModel)]="newExpense.budget" name="budget" required>
+      <mat-option *ngFor="let budget of budgets" [value]="budget._id">{{ budget.title }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="newExpense" cdkFocusInitial>Save</button>
+</div>
+
