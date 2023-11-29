@@ -1,0 +1,14 @@
+.negative-difference {
+  background-color: #FF5252; /* Red color for negative difference */
+  color: rgb(15, 14, 14); /* Set text color to ensure readability */
+}
+
+.positive-difference {
+  background-color: #4CAF50; /* Green color for non-negative difference */
+  color: rgb(15, 14, 14); /* Set text color to ensure readability */
+}
+
+.amber-difference{
+  background-color: #FFC107;
+  color: rgb(15, 14, 14);
+}

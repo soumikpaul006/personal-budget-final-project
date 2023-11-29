@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core'; // Ensure MatOptionModule is imported
+import { MatCardModule } from '@angular/material/card';
 
 import { EditBudgetDialogComponent } from './components/edit-budget-dialog/edit-budget-dialog.component';
 import { ExpenseDialogComponent } from './components/expense-dialog/expense-dialog.component';
@@ -63,6 +64,7 @@ import { EditExpenseDialogComponent } from './components/edit-expense-dialog/edi
     MatInputModule,
     MatSelectModule,
     MatOptionModule,
+    MatCardModule,
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule

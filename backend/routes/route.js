@@ -226,6 +226,45 @@ router.post('/expenses', jwtCheck, async (req, res) => {
 
 
 
+  ///total budget and total expenses
+
+  // Get total budget for a user
+  router.get('/budgets/total',jwtCheck, async (req, res) => {
+    try {
+      const totalBudget = await BudgetTable.getTotalBudget(req.user._id);
+      res.json({ totalBudget });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  });
+
+  // Get total expenses for a user
+router.get('/expenses/total',jwtCheck, async (req, res) => {
+  try {
+    const totalExpenses = await ExpenseTable.getTotalExpenses(req.user._id);
+    res.json({ totalExpenses });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //register route
 router.post('/register', async(req,res)=>{

@@ -25,4 +25,17 @@ const expenseSchema = new mongoose.Schema({
   }
 });
 
+// Add a static method to calculate the total expenses
+expenseSchema.statics.getTotalExpenses = async function (userId) {
+  try{
+    const expenses = await this.find({ userCreated: userId });
+    const totalExpenses = expenses.reduce((total, expense) => total + expense.amount, 0);
+    return totalExpenses;
+  }catch (error) {
+    console.error(error);
+    throw error; // Make sure to rethrow the error to be caught by the calling function
+  }
+};
+
+
 module.exports = mongoose.model('ExpenseTable', expenseSchema);

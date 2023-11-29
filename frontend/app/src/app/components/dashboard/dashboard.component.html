@@ -1,1 +1,17 @@
-<h1>dashboard works</h1>
+<p></p>
+<mat-card [ngClass]="{'negative-difference': budgetExpensesDifference < 0, 'positive-difference': budgetExpensesDifference >= 0, 'amber-difference':budgetExpensesDifference<=50 && budgetExpensesDifference>=0}">
+  <mat-card-header>
+    <mat-card-title>
+      {{
+        budgetExpensesDifference < 0 ? 'You are in red zone' :
+        (budgetExpensesDifference >= 0 && budgetExpensesDifference <= 50 ? 'You are in amber zone' : 'You are in green zone')
+      }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>Total Budget: {{ totalBudget | currency }}</p>
+    <p>Total Expenses: {{ totalExpenses | currency }}</p>
+    <p>Difference: {{ budgetExpensesDifference | currency }}</p>
+  </mat-card-content>
+</mat-card>
+

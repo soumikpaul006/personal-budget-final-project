@@ -1,6 +1,6 @@
 <app-nav></app-nav>
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode="side" [opened]="true" *ngIf="authenticated">
+  <mat-sidenav #sidenav mode="side" [opened]="true" *ngIf="authenticated" class="custom-sidenav">
     <mat-nav-list>
       <!-- Dashboard link with icon -->
       <a mat-list-item routerLink="/dashboard">

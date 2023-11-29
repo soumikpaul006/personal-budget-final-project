@@ -1,5 +1,3 @@
-// expense-dialog.component.ts
-
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -21,14 +19,14 @@ export class ExpenseDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchBudgets();
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
 
   fetchBudgets(): void {
     this.http.get<any[]>('http://localhost:3000/api/budgets',{withCredentials:true}).subscribe(
       (data) => {
         this.budgets = data;
-        console.log('Budgets:', this.budgets); // Log the budgets to the console
+        console.log('Budgets:', this.budgets);
       },
       (error) => {
         console.error('Error fetching budgets:', error);
