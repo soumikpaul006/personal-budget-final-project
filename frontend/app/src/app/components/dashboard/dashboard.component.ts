@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
   budgetExpensesDifference: number;
 
   yourBudgetDataArray: { title: string; amount: number }[] = [];
+  yourExpenseDataArray: { budgetTitle: string; expenseAmount: number }[] = [];
 
 
   constructor(private http: HttpClient) { }
@@ -37,5 +38,23 @@ export class DashboardComponent implements OnInit {
         console.error('Error fetching budget data:', error);
       }
     );
+
+
+      // Fetch expense data directly in the component
+      this.http.get<{ _id: string; amount: number; comment: string; userCreated: string; budget: { title: string; amount: number } }[]>('http://localhost:3000/api/expenses', { withCredentials: true }).subscribe(
+      (data) => {
+        console.log('Original Expense Data:', data);
+        this.yourExpenseDataArray = this.mapToExpectedFormat(data);
+      },
+      (error) => {
+        console.error('Error fetching expense data:', error);
+      }
+    );
+  }
+
+  private mapToExpectedFormat(data: { _id: string; amount: number; comment: string; userCreated: string; budget: { title: string; amount: number } }[]): { budgetTitle: string; expenseAmount: number }[] {
+    const mappedData = data.map(item => ({ budgetTitle: item.budget.title, expenseAmount: item.amount }));
+    console.log('Mapped Expense Data:', mappedData);
+    return mappedData;
   }
 }

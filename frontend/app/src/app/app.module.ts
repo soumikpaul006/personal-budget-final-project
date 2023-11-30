@@ -32,6 +32,7 @@ import { EditBudgetDialogComponent } from './components/edit-budget-dialog/edit-
 import { ExpenseDialogComponent } from './components/expense-dialog/expense-dialog.component';
 import { EditExpenseDialogComponent } from './components/edit-expense-dialog/edit-expense-dialog.component';
 import { BudgetChart1Component } from './components/budget-chart-1/budget-chart-1.component';
+import { ExpenseBarChart2Component } from './components/expense-bar-chart-2/expense-bar-chart-2.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { BudgetChart1Component } from './components/budget-chart-1/budget-chart-
     ExpenseDialogComponent,
     EditExpenseDialogComponent,
     BudgetChart1Component,
+    ExpenseBarChart2Component,
   ],
   imports: [
     BrowserModule,

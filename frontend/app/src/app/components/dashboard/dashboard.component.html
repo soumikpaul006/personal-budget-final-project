@@ -1,24 +1,4 @@
-<!-- <p></p>
-<mat-card [ngClass]="{'negative-difference': budgetExpensesDifference < 0, 'positive-difference': budgetExpensesDifference >= 0, 'amber-difference':budgetExpensesDifference<=50 && budgetExpensesDifference>=0}">
-  <mat-card-header>
-    <mat-card-title>
-      {{
-        budgetExpensesDifference < 0 ? 'You are in red zone' :
-        (budgetExpensesDifference >= 0 && budgetExpensesDifference <= 50 ? 'You are in amber zone' : 'You are in green zone')
-      }}
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>Total Budget: {{ totalBudget | currency }}</p>
-    <p>Total Expenses: {{ totalExpenses | currency }}</p>
-    <p>Difference: {{ budgetExpensesDifference | currency }}</p>
-  </mat-card-content>
-</mat-card>
-<p></p>
-<app-budget-chart-1 [budgetData]="yourBudgetDataArray"></app-budget-chart-1>
- -->
-
-
+ <p></p>
  <div class="dashboard-container">
   <mat-card [ngClass]="{'negative-difference': budgetExpensesDifference < 0, 'positive-difference': budgetExpensesDifference >= 0, 'amber-difference':budgetExpensesDifference<=50 && budgetExpensesDifference>=0}">
     <mat-card-header>
@@ -38,5 +18,6 @@
 
   <div class="chart-container">
     <app-budget-chart-1 [budgetData]="yourBudgetDataArray"></app-budget-chart-1>
+    <app-expense-bar-chart-2 [budgetData]="yourBudgetDataArray" [expenseData]="yourExpenseDataArray"></app-expense-bar-chart-2>
   </div>
 </div>
