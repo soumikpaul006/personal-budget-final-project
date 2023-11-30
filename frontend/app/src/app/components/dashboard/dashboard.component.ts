@@ -11,7 +11,11 @@ export class DashboardComponent implements OnInit {
   totalExpenses: number;
   budgetExpensesDifference: number;
 
+  yourBudgetDataArray: { title: string; amount: number }[] = [];
+
+
   constructor(private http: HttpClient) { }
+
 
   ngOnInit() {
     // Fetch total budget and expenses data
@@ -24,6 +28,14 @@ export class DashboardComponent implements OnInit {
       this.budgetExpensesDifference = this.totalBudget - this.totalExpenses;
     });
 
-
+    // Fetch budget data directly in the component
+    this.http.get<{ title: string; amount: number }[]>('http://localhost:3000/api/budgets',{withCredentials:true}).subscribe(
+      (data) => {
+        this.yourBudgetDataArray = data;
+      },
+      (error) => {
+        console.error('Error fetching budget data:', error);
+      }
+    );
   }
 }
