@@ -33,6 +33,8 @@ import { ExpenseDialogComponent } from './components/expense-dialog/expense-dial
 import { EditExpenseDialogComponent } from './components/edit-expense-dialog/edit-expense-dialog.component';
 import { BudgetChart1Component } from './components/budget-chart-1/budget-chart-1.component';
 import { ExpenseBarChart2Component } from './components/expense-bar-chart-2/expense-bar-chart-2.component';
+import { LineChart3Component } from './components/line-chart-3/line-chart-3.component';
+import { RadarChart4Component } from './components/radar-chart-4/radar-chart-4.component';
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import { ExpenseBarChart2Component } from './components/expense-bar-chart-2/expe
     EditExpenseDialogComponent,
     BudgetChart1Component,
     ExpenseBarChart2Component,
+    LineChart3Component,
+    RadarChart4Component,
   ],
   imports: [
     BrowserModule,
