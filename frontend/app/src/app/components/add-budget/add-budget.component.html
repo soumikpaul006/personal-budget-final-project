@@ -1,28 +1,25 @@
-<!-- add-budget.component.html -->
 <div class="container">
   <h2>Budget List</h2>
 
-  <!-- Add Budget Button -->
   <button mat-raised-button color="primary" (click)="openAddBudgetDialog()">Add Budget</button>
 
   <p></p>
 
 
-  <!-- Budget Table -->
   <table mat-table [dataSource]="budgets" class="mat-elevation-z8">
-    <!-- Title Column -->
+
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>Title</th>
       <td mat-cell *matCellDef="let budget">{{ budget.title }}</td>
     </ng-container>
 
-    <!-- Amount Column -->
+
     <ng-container matColumnDef="amount">
       <th mat-header-cell *matHeaderCellDef>Amount</th>
       <td mat-cell *matCellDef="let budget">{{ budget.amount }}</td>
     </ng-container>
 
-    <!-- Actions Column -->
+
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let budget">

@@ -1,2 +1,65 @@
-<h1>{{message}}</h1>
+<style>
+  .container1 {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+  background-color: #f6eded;
+}
+
+.header {
+  margin-bottom: 30px;
+}
+
+.features {
+  margin-bottom: 30px;
+}
+
+.features ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.cta {
+  margin-bottom: 50px;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+</style>
+
+<p></p>
+
+<div class="container1">
+  <div class="header">
+    <h1>{{message}}</h1>
+    <h1>Welcome to MyBudgetApp</h1>
+    <p>Your Personal Budget Management Solution</p>
+  </div>
+
+  <div class="features">
+    <h2>Key Features</h2>
+    <ul>
+      <li>Track Your Expenses and Budgets</li>
+      <li>Visualize Your Financial Data</li>
+      <li>Fully Secure and Private</li>
+    </ul>
+  </div>
+
+  <div class="cta">
+    <h2>Get Started Today!</h2>
+    <p>Start managing your finances more effectively with MyBudgetApp.</p>
+    <button routerLink="/dashboard" class="btn btn-primary">Go to Dashboard</button>
+    <button routerLink="/add-budget" class="btn btn-primary">Track Budget</button>
+    <button routerLink="/add-expense" class="btn btn-primary">Track Expense</button>
+  </div>
+</div>
 

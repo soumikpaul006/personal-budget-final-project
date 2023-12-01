@@ -24,7 +24,7 @@ export class BudgetChart1Component implements OnChanges {
 
 
   private getRandomColor(): string {
-    // Generate a random color in the format '#RRGGBB'
+
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
 
@@ -32,7 +32,6 @@ export class BudgetChart1Component implements OnChanges {
     const ctx = this.budgetChartCanvas.nativeElement.getContext('2d');
 
     if (ctx) {
-      // Destroy the existing chart if it exists
       if (this.chart) {
         this.chart.destroy();
       }

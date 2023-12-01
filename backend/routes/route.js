@@ -17,26 +17,17 @@ const router=Router()
 
 // Middleware function to check if JWT token is valid
 const jwtCheck = (req, res, next) => {
-  // Get the JWT token from the cookie
   const token = req.cookies.jwt;
 
-  // Check if the token exists
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized: No token provided' });
   }
-
   try {
-    // Verify the token
-    const decoded = jwt.verify(token, 'secret'); // Make sure to use the same secret as used during token creation
-
-    // Attach the decoded user information to the request object
+    const decoded = jwt.verify(token, 'secret');     
     req.user = decoded;
-
-    // Continue to the next middleware or route handler
     next();
 
   } catch (error) {
-    // Token verification failed
     return res.status(401).json({ message: 'Unauthorized: Invalid token' });
   }
 };
@@ -62,7 +53,7 @@ router.post('/budgets', jwtCheck, async (req, res) => {
       const newBudget = new BudgetTable({
         title,
         amount,
-        userCreated: req.user._id, // Assuming user information is attached by jwtCheck middleware
+        userCreated: req.user._id, 
       });
   
       const savedBudget = await newBudget.save();
@@ -146,7 +137,7 @@ router.post('/expenses', jwtCheck, async (req, res) => {
       const newExpense = new ExpenseTable({
         amount,
         comment,
-        userCreated: req.user._id, // Assuming user information is attached by jwtCheck middleware
+        userCreated: req.user._id,
         budget,
       });
   
@@ -352,7 +343,7 @@ router.get('/user', async (req, res) => {
     try {
         const cookie = req.cookies['jwt'];
 
-        // Check if the JWT cookie is present
+        
         if (!cookie) {
             return res.status(401).send({
                 message: "No JWT cookie founds. Unauthorized entry"
@@ -362,14 +353,14 @@ router.get('/user', async (req, res) => {
         const claims = jwt.verify(cookie, "secret");
         console.log(claims);
 
-        // Check if claims are present
+        
         if (!claims) {
             return res.status(401).send({
                 message: "Invalid JWT. Unauthorized entry"
             });
         }
 
-        // Find user based on the claims
+       
         const user = await User.findOne({_id:claims._id});
 
         if (!user) {
@@ -383,7 +374,7 @@ router.get('/user', async (req, res) => {
 
         res.send(data);
     } catch (err) {
-        // Log the error for debugging purposes
+        
         console.error(err);
 
         return res.status(401).send({

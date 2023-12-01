@@ -16,7 +16,7 @@ const budgetSchema = new mongoose.Schema({
   }
 });
 
-// Add a static method to calculate the total budget
+//method to calculate the total budget
 budgetSchema.statics.getTotalBudget = async function (userId) {
   try {
     const budgets = await this.find({ userCreated: userId });
@@ -24,7 +24,7 @@ budgetSchema.statics.getTotalBudget = async function (userId) {
     return totalBudget;
   } catch (error) {
     console.error(error);
-    throw error; // Make sure to rethrow the error to be caught by the calling function
+    throw error;
   }
 };
 

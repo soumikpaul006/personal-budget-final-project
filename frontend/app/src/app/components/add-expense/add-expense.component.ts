@@ -71,10 +71,6 @@ export class AddExpenseComponent implements OnInit {
   //     );
   // }
 
-
-
-
-    // Delete a expense
     deleteExpense(expenseId: string) {
       this.http.delete(`http://localhost:3000/api/expenses/${expenseId}`, {withCredentials:true}).subscribe(() => {
         this.getExpenses();

@@ -26,12 +26,10 @@ export class ExpenseBarChart2Component implements OnChanges {
     const ctx = this.expenseBarChartCanvas.nativeElement.getContext('2d');
 
     if (ctx) {
-      // Destroy the existing chart if it exists
       if (this.expenseBarChart) {
         this.expenseBarChart.destroy();
       }
 
-      // Extract data for the chart
       const budgetLabels = this.budgetData.map((budget) => budget.title);
       const budgetData = this.budgetData.map((budget) => budget.amount);
 
@@ -44,13 +42,9 @@ export class ExpenseBarChart2Component implements OnChanges {
         groupedExpenseData[expense.budgetTitle] += expense.expenseAmount;
       });
 
-      // Align expense data with budget labels
       const expenseData = budgetLabels.map((budgetLabel) => groupedExpenseData[budgetLabel] || 0);
+      const barWidth = 1;
 
-      // Calculate the bar width based on the number of datasets
-      const barWidth = 1; // Adjust as needed
-
-      // Create the bar chart
       this.expenseBarChart = new Chart(ctx, {
         type: 'bar',
         data: {

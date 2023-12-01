@@ -33,7 +33,7 @@ export class RadarChart4Component implements OnChanges {
       const labels = this.budgetData.map((budget) => budget.title);
       const budgetData = this.budgetData.map((budget) => budget.amount);
 
-      // Group expense data by budgetTitle
+
       const groupedExpenseData: { [key: string]: number } = {};
       this.expenseData.forEach((expense) => {
         if (groupedExpenseData[expense.budgetTitle] === undefined) {
