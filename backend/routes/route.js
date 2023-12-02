@@ -244,6 +244,57 @@ router.get('/expenses/total',jwtCheck, async (req, res) => {
 
 
 
+// Get monthly expenses
+// router.get('/expenses/monthly', jwtCheck, async (req, res) => {
+//   console.log(req.user._id)
+//   try {
+//     const monthlyExpenses = await ExpenseTable.aggregate([
+//       {
+//         $group: {
+//           _id: { $month: '$date' },
+//           totalExpense: { $sum: '$amount' },
+//         },
+//       },
+//     ]);
+
+//     const months = monthlyExpenses.map((entry) => entry._id);
+//     const expenses = monthlyExpenses.map((entry) => entry.totalExpense);
+
+//     res.json({ months, expenses });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: 'Internal Server Error' });
+//   }
+// });
+
+
+// Get monthly expenses
+router.get('/expenses/monthly', jwtCheck, async (req, res) => {
+  try {
+    const totalExpensesByMonth = {};
+    const allExpenses = await ExpenseTable.find({ userCreated: req.user._id});
+
+    allExpenses.forEach((expense) => {
+      const monthYear = expense.date.toISOString().slice(0, 7);
+      if (!totalExpensesByMonth[monthYear]) {
+        totalExpensesByMonth[monthYear] = 0;
+      }
+      totalExpensesByMonth[monthYear] += expense.amount;
+    });
+
+    res.json(totalExpensesByMonth);
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error', error: error.message });
+  }
+});
+
+
+
+
+
+
 
 
 
@@ -330,7 +381,7 @@ router.post('/login', async(req,res)=>{
 });
 
 //logout route
-router.post('/logout',async(req,res)=>{
+router.post('/logout', async(req,res)=>{
    res.cookie("jwt","",{maxAge:0});
 
    res.send({

@@ -35,6 +35,12 @@ import { BudgetChart1Component } from './components/budget-chart-1/budget-chart-
 import { ExpenseBarChart2Component } from './components/expense-bar-chart-2/expense-bar-chart-2.component';
 import { LineChart3Component } from './components/line-chart-3/line-chart-3.component';
 import { RadarChart4Component } from './components/radar-chart-4/radar-chart-4.component';
+import { MonthlyExpenseChartComponent } from './components/monthly-expense-chart/monthly-expense-chart.component';
+// import { NgChartsModule } from 'ng2-charts';
+// import { ChartsModule } from 'ng2-charts';
+
+// import { NgChartsModule } from 'ng2-charts';
+// import { BarChart6Component } from './components/bar-chart-6/bar-chart-6.component';
 
 
 @NgModule({
@@ -56,6 +62,8 @@ import { RadarChart4Component } from './components/radar-chart-4/radar-chart-4.c
     ExpenseBarChart2Component,
     LineChart3Component,
     RadarChart4Component,
+    MonthlyExpenseChartComponent,
+    // BarChart6Component,
   ],
   imports: [
     BrowserModule,
@@ -73,9 +81,12 @@ import { RadarChart4Component } from './components/radar-chart-4/radar-chart-4.c
     MatSelectModule,
     MatOptionModule,
     MatCardModule,
+    // NgChartsModule,
+    // ChartsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    // NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

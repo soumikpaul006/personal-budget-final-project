@@ -13,8 +13,8 @@ export class ExpenseBarChart2Component implements OnChanges {
   private expenseBarChart: Chart;
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('Received budgetData:', this.budgetData);
-    console.log('Received expenseData:', this.expenseData);
+    // console.log('Received budgetData:', this.budgetData);
+    // console.log('Received expenseData:', this.expenseData);
 
     if (this.expenseBarChartCanvas) {
       this.drawChart();

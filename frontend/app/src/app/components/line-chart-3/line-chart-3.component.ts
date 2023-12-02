@@ -14,8 +14,8 @@ export class LineChart3Component implements OnChanges {
   private lineChart: Chart;
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('Received budgetData:', this.budgetData);
-    console.log('Received expenseData:', this.expenseData);
+    // console.log('Received budgetData:', this.budgetData);
+    // console.log('Received expenseData:', this.expenseData);
 
     if (this.lineChartCanvas) {
       this.drawChart();

@@ -22,7 +22,7 @@ export class AddExpenseComponent implements OnInit {
   getExpenses(): void {
     this.http.get<any[]>('http://localhost:3000/api/expenses',{withCredentials:true}).subscribe(
       (data) => {
-        console.log(data)
+        // console.log(data)
         this.expenses = data;
       },
       (error) => {
