@@ -9,12 +9,6 @@ const router=Router()
 
 
 
-
-
-
-
-
-
 // Middleware function to check if JWT token is valid
 const jwtCheck = (req, res, next) => {
   const token = req.cookies.jwt;
