@@ -58,9 +58,6 @@ export class DashboardComponent implements OnInit {
         console.error('Error fetching monthly expense data:', error);
       }
     );
-
-
-
   }
 
   private mapToExpectedFormat(data: { _id: string; amount: number; comment: string; userCreated: string; budget: { title: string; amount: number } }[]): { budgetTitle: string; expenseAmount: number }[] {
