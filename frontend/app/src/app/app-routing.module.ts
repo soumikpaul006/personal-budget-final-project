@@ -6,10 +6,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { AddBudgetComponent } from './components/add-budget/add-budget.component';
 import { AddExpenseComponent } from './components/add-expense/add-expense.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { AuthGuardService } from './auth-guard.service';
 const routes: Routes = [
   {
-    path:'',component:HomeComponent
+    path:'',component:HomeComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path:'login',component:LoginComponent
@@ -18,13 +19,16 @@ const routes: Routes = [
     path:'register',component:RegisterComponent
   },
   {
-    path: 'dashboard', component: DashboardComponent
+    path: 'dashboard', component: DashboardComponent,
+    canActivate: [AuthGuardService]
   },
   {
-    path: 'add-budget', component: AddBudgetComponent
+    path: 'add-budget', component: AddBudgetComponent,
+    canActivate: [AuthGuardService]
   },
   {
-    path: 'add-expense', component: AddExpenseComponent
+    path: 'add-expense', component: AddExpenseComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 

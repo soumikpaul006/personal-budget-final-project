@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Emitters } from './emitters/emitter';
+import { AuthenticationService } from './authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +10,15 @@ export class AppComponent implements OnInit{
 
   title = 'app';
   authenticated=false;
+ constructor(private authenticationService : AuthenticationService ){}
 
   ngOnInit(): void {
-    Emitters.authEmitter.subscribe((auth:boolean)=>{
-      this.authenticated=auth
+    this.authenticationService.checkSession().subscribe((data:any)=>{
+      console.log(data);
+      this.authenticated = data;
+    }
+    );
 
-    })
   }
 
 }

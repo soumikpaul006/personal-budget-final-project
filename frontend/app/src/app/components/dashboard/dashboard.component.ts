@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AppConstant } from 'src/app/app.constant';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,17 +21,17 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     // Fetch total budget and expenses data
-    this.http.get<any>('http://localhost:3000/api/budgets/total',{withCredentials:true}).subscribe(data => {
+    this.http.get<any>(`${AppConstant.API_URL}/budgets/total`,{withCredentials:true}).subscribe(data => {
       this.totalBudget = data.totalBudget;
     });
 
-    this.http.get<any>('http://localhost:3000/api/expenses/total',{withCredentials:true}).subscribe(data => {
+    this.http.get<any>(`${AppConstant.API_URL}/expenses/total`,{withCredentials:true}).subscribe(data => {
       this.totalExpenses = data.totalExpenses;
       this.budgetExpensesDifference = this.totalBudget - this.totalExpenses;
     });
 
     // Fetch budget data directly in the component
-    this.http.get<{ title: string; amount: number }[]>('http://localhost:3000/api/budgets',{withCredentials:true}).subscribe(
+    this.http.get<{ title: string; amount: number }[]>(`${AppConstant.API_URL}/budgets`,{withCredentials:true}).subscribe(
       (data) => {
         this.yourBudgetDataArray = data;
       },
@@ -39,7 +40,7 @@ export class DashboardComponent implements OnInit {
       }
     );
       // Fetch expense data directly in the component
-      this.http.get<{ _id: string; amount: number; comment: string; userCreated: string; budget: { title: string; amount: number } }[]>('http://localhost:3000/api/expenses', { withCredentials: true }).subscribe(
+      this.http.get<{ _id: string; amount: number; comment: string; userCreated: string; budget: { title: string; amount: number } }[]>(`${AppConstant.API_URL}/expenses`, { withCredentials: true }).subscribe(
       (data) => {
         // console.log('Original Expense Data:', data);
         this.yourExpenseDataArray = this.mapToExpectedFormat(data);
@@ -50,7 +51,7 @@ export class DashboardComponent implements OnInit {
     );
 
     // Fetch monthly expense data
-    this.http.get<any>('http://localhost:3000/api/expenses/monthly', { withCredentials: true }).subscribe(
+    this.http.get<any>(`${AppConstant.API_URL}/expenses/monthly`, { withCredentials: true }).subscribe(
       (data) => {
         this.monthlyExpenseData = data;
       },

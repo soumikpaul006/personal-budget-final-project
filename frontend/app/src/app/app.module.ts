@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
@@ -36,6 +36,8 @@ import { ExpenseBarChart2Component } from './components/expense-bar-chart-2/expe
 import { LineChart3Component } from './components/line-chart-3/line-chart-3.component';
 import { RadarChart4Component } from './components/radar-chart-4/radar-chart-4.component';
 import { MonthlyExpenseChartComponent } from './components/monthly-expense-chart/monthly-expense-chart.component';
+import { AuthenticationService } from './authentication.service';
+import { AuthInterceptor } from './auth-interceptor.service';
 // import { NgChartsModule } from 'ng2-charts';
 // import { ChartsModule } from 'ng2-charts';
 
@@ -88,7 +90,11 @@ import { MonthlyExpenseChartComponent } from './components/monthly-expense-chart
     BrowserAnimationsModule,
     // NgChartsModule
   ],
-  providers: [],
+  providers: [AuthenticationService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

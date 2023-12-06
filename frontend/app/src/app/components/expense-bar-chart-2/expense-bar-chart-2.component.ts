@@ -2,8 +2,11 @@ import { Component, Input, OnChanges, SimpleChanges, ViewChild, ElementRef } fro
 import { Chart } from 'chart.js/auto';
 
 @Component({
+  // Your Angular component
   selector: 'app-expense-bar-chart-2',
-  template: '<canvas #expenseBarChartCanvas></canvas>',
+  template: '<canvas id="exBarCha" #expenseBarChartCanvas></canvas>',
+  styles: ['#exBarCha{background-color: #f0f0f0;}']
+
 })
 export class ExpenseBarChart2Component implements OnChanges {
   @Input() budgetData: { title: string; amount: number }[] = [];

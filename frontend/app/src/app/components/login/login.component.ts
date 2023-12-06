@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppConstant } from 'src/app/app.constant';
+import { AuthenticationService } from 'src/app/authentication.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,7 +18,8 @@ export class LoginComponent implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private authenticationService : AuthenticationService
   ){}
 
   ngOnInit():void{
@@ -53,12 +56,23 @@ export class LoginComponent implements OnInit{
     }
     else
     {
-      this.http.post('http://localhost:3000/api/login',user,{withCredentials:true})
+      this.http.post(`${AppConstant.API_URL}/login`,user,{withCredentials:true})
       .subscribe(
-        (res)=> this.router.navigate(['/']),
-        (err)=> {
-          Swal.fire("Error",err.error.message,"error")
-        }
-      )}
+        (user:any)=>{
+
+          Swal.fire("Success","User registered successfully","success")
+          console.log(user);
+          localStorage.setItem("jwt",user.token);
+          localStorage.setItem("user",user.user);
+          this.authenticationService.setSession(user.token);
+
+          this.router.navigate(['/'])
+
+
+        },(error)=>{
+          console.log(error)
+          Swal.fire("Error",error.error.message,"error")
+        } )
+      }
   }
 }

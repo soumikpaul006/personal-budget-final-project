@@ -11,14 +11,19 @@ const router=Router()
 
 // Middleware function to check if JWT token is valid
 const jwtCheck = (req, res, next) => {
-  const token = req.cookies.jwt;
+  const token = req.headers['x-access-token']|| req.headers.authorization.split(' ')[1];
 
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized: No token provided' });
   }
   try {
     const decoded = jwt.verify(token, 'secret');     
+    const user = User.findOne({ _id: decoded._id });
+    if (!user) {
+      return res.status(401).json({ message: 'Unauthorized: Invalid token' });
+    }
     req.user = decoded;
+    req.userName=user.name;
     next();
 
   } catch (error) {
@@ -331,14 +336,10 @@ router.post('/register', async(req,res)=>{
         //JWT Token
         const {_id} =await result.toJSON();
         const token=jwt.sign({_id:_id},"secret");
-        
-        res.cookie("jwt",token,{
-            httpOnly:true,
-            maxAge: 24*60*60*1000
-        });
-
         res.send({
-            message:"success"
+            message:"success",
+            token:token,
+            user:user.name
         });
     }
 });
@@ -346,7 +347,7 @@ router.post('/register', async(req,res)=>{
 //Login route
 router.post('/login', async(req,res)=>{
 
-    const user=await User.findOne({email:req.body.email});
+    const user = await User.findOne({email:req.body.email});
 
     if(!user)
     {
@@ -363,70 +364,65 @@ router.post('/login', async(req,res)=>{
     }
 
     const token=jwt.sign({_id:user._id},"secret");
-
-    res.cookie("jwt",token,{
-        httpOnly: true,
-        maxAge:24*60*60*1000
-    });
-
+console.log(user.name)
     res.send({
         message:"success",
+        token:token,
+        user: user.name
     });
 });
 
 //logout route
 router.post('/logout', async(req,res)=>{
-   res.cookie("jwt","",{maxAge:0});
-
    res.send({
         message:"success"
    });
 });
 
-//it will tell the user is authenticated or not
-router.get('/user', async (req, res) => {
-    try {
-        const cookie = req.cookies['jwt'];
+// //it will tell the user is authenticated or not
+// router.get('/user', async (req, res) => {
+//     try {
+//         const cookie = req.cookies['jwt'];
 
         
-        if (!cookie) {
-            return res.status(401).send({
-                message: "No JWT cookie founds. Unauthorized entry"
-            });
-        }
+//         if (!cookie) {
+//             return res.status(401).send({
+//                 message: "No JWT cookie founds. Unauthorized entry"
+//             });
+//         }
 
-        const claims = jwt.verify(cookie, "secret");
-        console.log(claims);
+//         const claims = jwt.verify(cookie, "secret");
+//         console.log(claims);
 
         
-        if (!claims) {
-            return res.status(401).send({
-                message: "Invalid JWT. Unauthorized entry"
-            });
-        }
+//         if (!claims) {
+//             return res.status(401).send({
+//                 message: "Invalid JWT. Unauthorized entry"
+//             });
+//         }
 
        
-        const user = await User.findOne({_id:claims._id});
+//         const user = await User.findOne({_id:claims._id});
 
-        if (!user) {
-            return res.status(401).send({
-                message: "User not found. Unauthorized entry"
-            });
-        }
+//         if (!user) {
+//             return res.status(401).send({
+//                 message: "User not found. Unauthorized entry"
+//             });
+//         }
 
-        // Omit the password from the response
-        const { password, ...data } = await user.toJSON();
+//         // Omit the password from the response
+//         const { password, ...data } = await user.toJSON();
 
-        res.send(data);
-    } catch (err) {
+//         res.send(data);
+//     } catch (err) {
         
-        console.error(err);
+//         console.error(err);
 
-        return res.status(401).send({
-            message: "Error during authentication"
-        });
-    }
-});
+//         return res.status(401).send({
+//             message: "Error during authentication"
+//         });
+//     }
+// });
 
 
 module.exports = jwtCheck;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Emitters } from 'src/app/emitters/emitter';
+import { AuthenticationService } from 'src/app/authentication.service';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -8,13 +9,16 @@ import { Emitters } from 'src/app/emitters/emitter';
 })
 export class SidebarComponent implements OnInit {
 
-  authenticated=false;
+authenticated=false;
+constructor(private AuthenticationService: AuthenticationService ){}
 
 
   ngOnInit(): void {
-    Emitters.authEmitter.subscribe((auth:boolean)=>{
-      this.authenticated=auth
-    })
+    this.AuthenticationService.checkSession().subscribe((data:any)=>{
+      console.log(data);
+      this.authenticated = data;
+    }
+    );
   }
 
 }

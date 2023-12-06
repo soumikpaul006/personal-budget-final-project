@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Emitters } from 'src/app/emitters/emitter';
+import { AuthenticationService } from 'src/app/authentication.service';
+
 
 @Component({
   selector: 'app-home',
@@ -11,21 +12,23 @@ export class HomeComponent implements OnInit{
 
   message="";
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient,private authenticationService : AuthenticationService){}
 
   ngOnInit(): void {
-
-    this.http.get("http://localhost:3000/api/user", {withCredentials: true})
-    .subscribe((res:any)=>{
-        this.message = `Hi ${res.name}`;
-        Emitters.authEmitter.emit(true)
-      },
-      (err) => {
-        console.log(err);
-        this.message = `An error occurred while fetching user data. Please try again.`;
-        Emitters.authEmitter.emit(false);
+    this.authenticationService.checkSession().subscribe((data:any)=>{
+      console.log(data);
+      if(data){
+        if(localStorage.getItem("user")){
+          this.message = localStorage.getItem("user")  + " is logged in";
+        }else{
+          this.message="You are not logged in";
+        }
       }
-    );
+      else{
+        this.message="You are not logged in";
+      }
+    });
+
   }
 }
 

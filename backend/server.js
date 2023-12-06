@@ -18,7 +18,7 @@ app.use(express.json())
 
 app.use("/api",routes)
 
-mongoose.connect("mongodb://localhost:27017/personal-budget-db",{
+mongoose.connect("mongodb://127.0.0.1:27017/personal-budget-db",{
     useNewUrlParser:true,
 })
 .then(()=>{

@@ -3,8 +3,9 @@ import {Chart} from 'chart.js/auto';
 
 @Component({
   selector: 'app-budget-chart-1',
-  template: '<canvas #budgetChartCanvas class="budget-chart-canvas"></canvas>',
-  styles: ['.budget-chart-canvas { width: 200px; height: 200px; }'],
+  template: '<canvas id="budgetChart" #budgetChartCanvas class="budget-chart-canvas trial"></canvas>',
+  styles: ['#budgetChart{ background-color: #f0f0f0;} .budget-chart-canvas { width: 800px !important; height: 800px !important; position: relative; left: 20px; } .trial{ margin-left: 200px;  }'],
+
 })
 export class BudgetChart1Component implements OnChanges {
   @Input() budgetData: { title: string; amount: number }[] = [];

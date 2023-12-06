@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Emitters } from 'src/app/emitters/emitter';
+import { AppConstant } from 'src/app/app.constant';
+import { AuthenticationService } from 'src/app/authentication.service';
 
 @Component({
   selector: 'app-nav',
@@ -11,17 +12,22 @@ export class NavComponent implements OnInit {
 
   authenticated=false;
 
-  constructor(private http:HttpClient){}
+  constructor(private http:HttpClient,private authenticationService : AuthenticationService){}
 
   ngOnInit(): void {
-      Emitters.authEmitter.subscribe((auth:boolean)=>{
-        this.authenticated=auth
-      })
+    this.authenticationService.checkSession().subscribe((data:any)=>{
+      console.log(data);
+      this.authenticated = data;
+    });
   }
 
   logout():void{
-    this.http.post('http://localhost:3000/api/logout',{},{withCredentials:true})
-    .subscribe(()=>this.authenticated=false)
+    this.http.post(`${AppConstant.API_URL}/logout`,{},{withCredentials:true})
+    .subscribe(()=>
+    {
+      this.authenticated = false
+      this.authenticationService.removeSession();
+    })
   }
 
 }

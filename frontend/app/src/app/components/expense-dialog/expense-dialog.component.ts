@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AppConstant } from 'src/app/app.constant';
 
 @Component({
   selector: 'app-expense-dialog',
@@ -23,7 +24,7 @@ export class ExpenseDialogComponent implements OnInit {
   }
 
   fetchBudgets(): void {
-    this.http.get<any[]>('http://localhost:3000/api/budgets',{withCredentials:true}).subscribe(
+    this.http.get<any[]>(`${AppConstant.API_URL}/budgets`,{withCredentials:true}).subscribe(
       (data) => {
         this.budgets = data;
         console.log('Budgets:', this.budgets);

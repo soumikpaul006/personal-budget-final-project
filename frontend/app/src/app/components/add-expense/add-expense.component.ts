@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { ExpenseDialogComponent } from '../expense-dialog/expense-dialog.component';
+import { AppConstant } from 'src/app/app.constant';
 // import { EditExpenseDialogComponent } from '../edit-expense-dialog/edit-expense-dialog.component';
 
 @Component({
@@ -20,7 +21,7 @@ export class AddExpenseComponent implements OnInit {
   }
 
   getExpenses(): void {
-    this.http.get<any[]>('http://localhost:3000/api/expenses',{withCredentials:true}).subscribe(
+    this.http.get<any[]>(`${AppConstant.API_URL}/expenses`,{withCredentials:true}).subscribe(
       (data) => {
         // console.log(data)
         this.expenses = data;
@@ -45,7 +46,7 @@ export class AddExpenseComponent implements OnInit {
 
 
   addExpense(newExpense: any): void {
-    this.http.post<any>('http://localhost:3000/api/expenses', newExpense,{withCredentials:true}).subscribe(
+    this.http.post<any>(`${AppConstant.API_URL}/expenses`, newExpense,{withCredentials:true}).subscribe(
       (data) => {
         console.log('Expense added successfully:', data);
         this.getExpenses(); // Refresh the expense list after adding a new expense
@@ -59,7 +60,7 @@ export class AddExpenseComponent implements OnInit {
 
   // //edit a expense
   // editExpense(updatedExpense: any): void {
-  //   this.http.put<any>(`http://localhost:3000/api/expenses/${updatedExpense._id}`, updatedExpense, { withCredentials: true })
+  //   this.http.put<any>(`${AppConstant.API_URL}/expenses/${updatedExpense._id}`, updatedExpense, { withCredentials: true })
   //     .subscribe(
   //       (data) => {
   //         console.log('Expense updated successfully:', data);
@@ -72,7 +73,7 @@ export class AddExpenseComponent implements OnInit {
   // }
 
     deleteExpense(expenseId: string) {
-      this.http.delete(`http://localhost:3000/api/expenses/${expenseId}`, {withCredentials:true}).subscribe(() => {
+      this.http.delete(`${AppConstant.API_URL}/expenses/${expenseId}`, {withCredentials:true}).subscribe(() => {
         this.getExpenses();
       });
     }
