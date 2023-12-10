@@ -204,18 +204,6 @@ router.post('/expenses', jwtCheck, async (req, res) => {
   });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   ///total budget and total expenses
 
   // Get total budget for a user
@@ -244,30 +232,6 @@ router.get('/expenses/total',jwtCheck, async (req, res) => {
 
 
 // Get monthly expenses
-// router.get('/expenses/monthly', jwtCheck, async (req, res) => {
-//   console.log(req.user._id)
-//   try {
-//     const monthlyExpenses = await ExpenseTable.aggregate([
-//       {
-//         $group: {
-//           _id: { $month: '$date' },
-//           totalExpense: { $sum: '$amount' },
-//         },
-//       },
-//     ]);
-
-//     const months = monthlyExpenses.map((entry) => entry._id);
-//     const expenses = monthlyExpenses.map((entry) => entry.totalExpense);
-
-//     res.json({ months, expenses });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Internal Server Error' });
-//   }
-// });
-
-
-// Get monthly expenses
 router.get('/expenses/monthly', jwtCheck, async (req, res) => {
   try {
     const totalExpensesByMonth = {};
@@ -288,19 +252,6 @@ router.get('/expenses/monthly', jwtCheck, async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error', error: error.message });
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -379,50 +330,6 @@ router.post('/logout', async(req,res)=>{
    });
 });
 
-// //it will tell the user is authenticated or not
-// router.get('/user', async (req, res) => {
-//     try {
-//         const cookie = req.cookies['jwt'];
-
-        
-//         if (!cookie) {
-//             return res.status(401).send({
-//                 message: "No JWT cookie founds. Unauthorized entry"
-//             });
-//         }
-
-//         const claims = jwt.verify(cookie, "secret");
-//         console.log(claims);
-
-        
-//         if (!claims) {
-//             return res.status(401).send({
-//                 message: "Invalid JWT. Unauthorized entry"
-//             });
-//         }
-
-       
-//         const user = await User.findOne({_id:claims._id});
-
-//         if (!user) {
-//             return res.status(401).send({
-//                 message: "User not found. Unauthorized entry"
-//             });
-//         }
-
-//         // Omit the password from the response
-//         const { password, ...data } = await user.toJSON();
-
-//         res.send(data);
-//     } catch (err) {
-        
-//         console.error(err);
-
-//         return res.status(401).send({
-//             message: "Error during authentication"
-//         });
-//     }
-// });
 
 
 module.exports = jwtCheck;

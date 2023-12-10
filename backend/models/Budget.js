@@ -29,3 +29,5 @@ budgetSchema.statics.getTotalBudget = async function (userId) {
 };
 
 module.exports = mongoose.model('BudgetTable', budgetSchema);
+
+
