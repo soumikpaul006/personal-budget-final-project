@@ -40,7 +40,7 @@
 
 <div class="container1">
   <div class="header">
-    <h1>{{message}}</h1>
+    <h1 aria-live="polite">{{message}}</h1> <!-- Dynamic content, so use aria-live -->
     <h1>Welcome to MyBudgetApp</h1>
     <p>Your Personal Budget Management Solution</p>
   </div>
@@ -62,4 +62,3 @@
     <button routerLink="/add-expense" class="btn btn-primary">Track Expense</button>
   </div>
 </div>
-

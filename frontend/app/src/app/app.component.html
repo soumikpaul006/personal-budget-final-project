@@ -1,28 +1,28 @@
 <app-nav></app-nav>
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav mode="side" [opened]="true" *ngIf="authenticated" class="custom-sidenav">
+  <mat-sidenav #sidenav mode="side" [opened]="true" *ngIf="authenticated" class="custom-sidenav" role="navigation">
     <mat-nav-list>
       <!-- Dashboard link with icon -->
       <a mat-list-item routerLink="/dashboard">
-        <mat-icon>dashboard</mat-icon>
-        Dashboard
+        <mat-icon alt="Dashboard Icon">dashboard</mat-icon>
+        <span class="sr-only">Go to Dashboard</span>
       </a>
 
       <!-- Add Budget link with icon -->
       <a mat-list-item routerLink="/add-budget">
-        <mat-icon>add_circle</mat-icon>
-        Add Budget
+        <mat-icon alt="Add Budget Icon">add_circle</mat-icon>
+        <span class="sr-only">Create a New Budget</span>
       </a>
 
       <!-- Add Expense link with icon -->
       <a mat-list-item routerLink="/add-expense">
-        <mat-icon>attach_money</mat-icon>
-        Add Expense
+        <mat-icon alt="Add Expense Icon">attach_money</mat-icon>
+        <span class="sr-only">Record a New Expense</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <main class="container" style="height:100vh;">
+    <main class="container" style="height:100vh;" role="main">
       <router-outlet></router-outlet>
     </main>
   </mat-sidenav-content>

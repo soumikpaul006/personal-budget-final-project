@@ -1,37 +1,37 @@
- <p></p>
- <div class="dashboard-container">
+<div class="dashboard-container">
   <mat-card [ngClass]="{'negative-difference': budgetExpensesDifference < 0, 'positive-difference': budgetExpensesDifference >= 0, 'amber-difference':budgetExpensesDifference<=50 && budgetExpensesDifference>=0}">
+
     <mat-card-header>
       <mat-card-title>
-        {{
-          budgetExpensesDifference < 0 ? 'You are in red zone' :
-          (budgetExpensesDifference >= 0 && budgetExpensesDifference <= 50 ? 'You are in amber zone' : 'You are in green zone')
-        }}
+        <span aria-live="polite"> <!-- Dynamic content should be announced by screen readers -->
+          {{
+            budgetExpensesDifference < 0 ? 'You are in red zone' :
+            (budgetExpensesDifference >= 0 && budgetExpensesDifference <= 50 ? 'You are in amber zone' : 'You are in green zone')
+          }}
+        </span>
       </mat-card-title>
     </mat-card-header>
+
+
     <mat-card-content>
-      <p>Total Budget: {{ totalBudget | currency }}</p>
-      <p>Total Expenses: {{ totalExpenses | currency }}</p>
-      <p>Difference: {{ budgetExpensesDifference | currency }}</p>
+      <p>Total Budget: <span aria-live="polite">{{ totalBudget | currency }}</span></p>
+      <p>Total Expenses: <span aria-live="polite">{{ totalExpenses | currency }}</span></p>
+      <p>Difference: <span aria-live="polite">{{ budgetExpensesDifference | currency }}</span></p>
     </mat-card-content>
   </mat-card>
 
+  <p></p>
+
   <div class="chart-container">
-    <p></p>
     <h1>Budget Distribution</h1>
-    <app-budget-chart-1 [budgetData]="yourBudgetDataArray"></app-budget-chart-1>
+    <app-budget-chart-1 [budgetData]="yourBudgetDataArray" role="img" aria-label="Visual representation of budget distribution"></app-budget-chart-1>
     <p></p>
     <h1>Budget vs Expenses</h1>
-    <app-expense-bar-chart-2 [budgetData]="yourBudgetDataArray" [expenseData]="yourExpenseDataArray"></app-expense-bar-chart-2>
+    <app-expense-bar-chart-2 [budgetData]="yourBudgetDataArray" [expenseData]="yourExpenseDataArray" role="img" aria-label="Bar chart comparing budget and expenses"></app-expense-bar-chart-2>
     <p></p>
     <h1>Monthly Expenses</h1>
-    <app-monthly-expense-chart *ngIf="monthlyExpenseData" [monthlyData]="monthlyExpenseData"></app-monthly-expense-chart>
+    <app-monthly-expense-chart *ngIf="monthlyExpenseData" [monthlyData]="monthlyExpenseData" role="img" aria-label="Chart showing monthly expenses"></app-monthly-expense-chart>
     <p></p>
-
-    <!-- <app-monthly-expense></app-monthly-expense> -->
-    <!-- <app-line-chart-3 [budgetData]="yourBudgetDataArray" [expenseData]="yourExpenseDataArray"></app-line-chart-3> -->
-    <!-- <app-radar-chart-4 [budgetData]="yourBudgetDataArray" [expenseData]="yourExpenseDataArray"></app-radar-chart-4> -->
-    <!-- <app-bar-chart-6 [expenseData]="yourExpenseDataArray"></app-bar-chart-6> -->
 
   </div>
 </div>
