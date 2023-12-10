@@ -315,7 +315,7 @@ router.post('/login', async(req,res)=>{
     }
 
     const token=jwt.sign({_id:user._id},"secret");
-console.log(user.name)
+    console.log(user.name)
     res.send({
         message:"success",
         token:token,
@@ -328,6 +328,19 @@ router.post('/logout', async(req,res)=>{
    res.send({
         message:"success"
    });
+});
+
+
+
+router.post('/refresh', jwtCheck, async (req,res)=>{
+  const user = req.user;
+  const token=jwt.sign({_id:user._id},"secret");
+  console.log(user.name)
+  res.send({
+      message:"success",
+      token:token,
+      user: user.name
+  });
 });
 
 
