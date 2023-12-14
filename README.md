@@ -1,5 +1,5 @@
 # personal-budget-final-project
-A personal budget expense tracker application using Node.js, Angular, Express.js and MongoDB.
+A personal budget expense tracker application using Node.js, Angular, Express.js, Chart.js and MongoDB.
 
 Register Page
 
